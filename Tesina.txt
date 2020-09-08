@@ -1,0 +1,306 @@
+
+ ******     *******   **********   *******   **         *******  
+/*////**   **/////** /////**///   **/////** /**        **/////** 
+/*   /**  **     //**    /**     **     //**/**       **     //**
+/******  /**      /**    /**    /**      /**/**      /**      /**
+/*//// **/**      /**    /**    /**      /**/**      /**      /**
+/*    /**//**     **     /**    //**     ** /**      //**     ** 
+/*******  //*******      /**     //*******  /******** //*******  
+///////    ///////       //       ///////   ////////   ///////   
+ 	
+ 	SISTEMA DI PROFILAZIONE CLIENTI
+ 	 Specifica dei requisiti
+
+ 	 Modena, data indefinita
+ 	 
+ 	 Io sottoscritto Stefano Lugli matricola numero 118305 
+                    DICHIARO
+    che questo elaborato è frutto del mio personale lavoro, svolto sostanzialmente in maniera individuale e autonoma.
+
+ 	
+ABASTRACT
+
+    L'esperienza del cliente in un punto vendita fisico non è fondamentale solo per quanto riguarda la vendità diretta di beni, ma anche a garantire una certa soddisfazione capace di aumentarne la buona reputazione ed esercitare un appeal su potenziali clienti. Un ambiente di vendita può essere rappresentato come un semplice spazio all'interno del quale i clienti possano muoversi, guardare ed acqistare beni e servizi; l'esempio più banale è quello del negozietto all'interno del centro commerciale, ma il fine di questo progetto spazia anche verso ambienti di diversa dimensione e tipologia. Il comfort può provenire da diverse fonti, le quali possono essere adattate ai gusti del singolo cliente o di un gruppo di essi, come musica, profumo, intensità luminosa, temperatura... 
+    In questo documento proponiamo un approccio che sia "user-aware", capace di configurarsi dinamicamente considerando le fonti di benessere sopracitate in maniera da mettere il cliente a proprio agio nel negozio stesso. Introdurremo quindi un modello di contesto personale dell'utente, il quale può essere utilizzato per ottenere informazioni riguardo allo stesso e dunque scegliere la musica da riprodurre, icolori deei led e via dicendo. 
+    Il sistema di decisione è basato su un'architettura a microservizi che garantisce modularità e flessibilità. Saranno inoltre utilizzati esempi concreti per esprimere meglio i contesti d'uso dell'applicazione.
+
+     1. INTRODUZIONE
+    
+    Con la seguente sezione si cercherà di dare una visione completa riguardo al documento di Specifica dei requsiti. La struttura è quella suggerita dallo standard IEEE/EIA 830-1998 noto come Software Requirements Specification Standard. 
+
+    1.1 OBBIETTIVO
+        L'obbiettivo di questo documento è la descrizione dei requisiti, del funzionamento e della struttura del progetto commissionato dal professor. Bicocchi per il corso di Programmazione ad Oggetti (DIEF, UNIMORE). Illustrerà quindi le informazioni sui requisiti raccolte nella fase di elicitation svolta col professore stesso riguardanti l'idea di Stephan Boese (Gk Software, Germania, sboese@gksoftware.it) e Giacomo Cabri (Università di Modena e Reggio Emilia, Modena, Italia, giacomo.cabri@unimore.it). 
+
+    1.2 CAMPO D'APPLICAZIONE
+        Il documento tratterà del problema di creare un framework volto all'automazione di un punto vendita in maniera tale da adattarlo alle preferenze dei clienti, rendendo il loro shopping più piacevole. Quando le persone entrano in un negozio, infatti, sono spinti ad effettuare acquisti da diversi fattori. Ovviamente, i gsti personali e i prodotti esposti sono il principale fattore di "appeal", ma anche l'ambiente circostante può giocare un ruolo fondamentale: la musica, i colori dei led, il profumo, cosa è mostrato sui monitor, le pubblicità e via dicendo; tutti loro possono essere definiti come "comfort aspects". Manipolando questi parametri possiamo quindi incoraggiare i clienti all'acquisto all'interno del nostro spazio, o per lo meno convincerli a rifarci visita grazie alla buona impressione fatta. 
+        L'ambiente può anche essere manipolato dai negozianti stessi, ovviamente, ma ciò necessita spesso un certo buon senso e conoscenze non condivise da tutti. Come fece amazon rivoluzionando il settore della vendita dei libri introducendo un nuovo algoritmo che non facesse riferimento solamente alle critiche degli esperti, il nostro framework è volto ad automatizzare l'apprendimento dlele preferenze dei clienti in maniera tale da migliorare le vendite senza dover fare riferimento all'esperienza degli operatori all'interno del punto vendita.
+        Non è ancora stato dato un nome ufficiale al prodotto, quindi verrà chiamato col codename "Botolo".
+        È necessario sottolineare fin da subito come non ci occuperemo degli aspetti psicologici, come per esempio quale sarebbe la musica migliore  in una determinata situazione, né ci occuperemo degli algoritmi decisionali, i quali possono essre scelti e modificati tra i numerosi già esistenti. L'obbiettivo è di crere un'infrastruttura che possa essere facilmente dattata a numerosi situazioni.
+        Un'altra nota importante è che il flusso di informazioni riguardanti lo stato del sistema 
+
+    1.3 DEFINIZIONI
+	
+        - FRAMEWORK: Un framework, termine della lingua inglese che può essere tradotto come struttura o quadro strutturale, in informatica e specificamente nello sviluppo software, è un'architettura logica di supporto (spesso un'implementazione logica di un particolare design pattern) sul quale un software può essere progettato e realizzato, spesso facilitandone lo sviluppo da parte del programmatore.
+        - ARCHITETTURA A SERVIZI/MICROSERVIZI:  termine che descrive la pratica di suddividere un’applicazione in una serie di parti più piccole e specializzate, ciascuna delle quali comunica con le altre attraverso interfacce comuni come API e interfacce REST – relativamente stabili – per creare un’applicazione più grande.
+        - API REST: un’API REST è un’interfaccia di programmazione che usa HTTP per gestire dati remoti. L'acronimo REST sta per REpresentational State Transfer
+        - SENSORE: Unità software/hardware capace di raccogliere dati riguardanti l'ambiente
+        - ATTUTATORE: Unità software/hardware capace di influenzare l'ambiente causandone una variazione dello stato interno
+        - DECISORE: Unità software/hardware con la quale il framework va interfacciandosi per elaborare i dati raccolti dai sensori
+        - SPRING: framework per la creazione di architetture a servizi
+        - SISTEMA/AMBIENTE: per sistema si intende il campo di studio del nostro frameowrk, quindi un punto vendita. Il negozio viene infatti modellato alla stregua di un sistema termodinamico aperto, in cui lo scambio di massa viene sostituito dal passaggio di clienti. 
+        - CONTESTO/STATO: per contesto si intende le proprietà misurabili dell'ambiente (come temperatura, condizione meteo, stagione...), le proprietà misurabili del sistema (temperatura all'interno del negozio, numero di clienti, intesità dei led...) e le proprietà dei singoli clienti (preferenze musicali, età, preferenze sui prodotti...). Lo statoè di fatto lo stato del sistema, quindi l'insieme di condizioni che lo influenzano in un dato momento temporale. Di fatto, lo stato riguarda le impostazioni degli attuatori (per esempio la temperatura impostata sul termostato, l'intesità luminosa, la canzone in riproduzione...). 
+        - COMPOSIZIONE: insieme delle unità atomiche che vanno ad influenzare lo stato (quindi di fatto, l'insieme delle impostazioni dei singoli attuatori). La composizione ottimale viene calcolata in base all'insieme dei contesti e dovrebbe rappresentare lo stato al quale il sistema deve tendere. Ottimalmente, è lo stato successivo a quello presente.
+        - UTENTE: programmatore finale che utilizzerà/adatterà il framework in un'applicazione reale
+        - CLIENTE: persona che si reaa in un ambiente all'interno del quale è stato implementato il framework. Per esempio, un consumatore all'interno di una boutique di vestiti. Di fatto, colui che subità passivamente le decisioni dell'implementazione di questo progetto.
+
+
+    1.4 FONTI 
+	
+	Per la documentazione Java sono state utilizzate le seguenti fonti:
+	- https://github.com/nbicocchi/ooprogramming
+	- https://spring.io/guides/gs/rest-service/
+	- https://www.tutorialspoint.com/maven/index.htm
+	- https://www.html.it/guide/guida-java-spring/
+	- https://www.html.it/guide/guida-al-framework-spring-mvc/
+	- https://it.wikipedia.org/wiki/Framework
+	- https://en.wikipedia.org/wiki/Microservices
+    - https://www.garanteprivacy.it/il-testo-del-regolamento
+
+
+    1.5 STRUTTURA DEL DOCUMENTO
+        - Sezione 1 (questa): Introduzione
+        - Sezione 2: Descrizione Generale
+        - Sezione 3: Specifizione dei requisiti
+        - Appendici
+    
+2 DESCRIZIONE GENERALE 
+    
+    In questa sezione è riportata la descrizione ad alto livello che espone in generale il prodotto software con le sue maggiori funzioni, caratteristiche degli utenti, vincoli principali e dipendenze.
+    
+    2.1 PROSPETTIVA SUL PRODOTTO
+
+        Per un corretto funzionamento del sistema decisionale sono necessarie alcune astrazioni, le quali veranno salvate come storico all'interno di un database. È necessario creare un modello di preferenze dei clienti al quale adattare il sistema. Ovviamente, avendo più preferenze manifestate contemporaneamente, si cercheranno di attribuire valori medi e pesati.
+        Noi creeremo la composizione dei contesti a partire da 3 fonti d'informazione principali: il contesto ESTERNO, il contesto STATISTICO e il contesto PERSONALE. 
+        Il contesto ESTERNO è relativo alle informazioni come meteo atmosferico, l'ora del giorno, il luogo in cui ci si trova e via dicendo. Anche se queste informazioni non sono direttamente collegate al cliente, sono utili per farsi un'idea delle condizioni generali in cui esso si trova (un soleggiato pomeriggio di primavera trasmette emozioni diverse rispetto ad una piovosa mattinata d'inverno). Questo contesto è quello meno influente sulle decisioni poichè estremamente generico. Probabilmente questo contesto richiederà il collegamento a servizi esterni.
+        Il contesto STATISTICO riguarda la distribuzione delle presenze nel tempo e nello spazio, dipendendo completamente da altri parametri come l'età dei clienti. Si potrebbe definire come un contesto raffinato a partire da altri dati grezzi, ache di terze parti. Una miglior spiegazione può essere data considerando come le persone solitamente preferiscano musica vivace al mattino e musica più calma verso sera. Questa assunzione è vagamente presa considerando le persone all'interno del nostro ambiente e si basa su statistiche di terze parti, ma comunque ci suggerische che i clienti si troveranno PROBABILMENTE più a loro agio in questa maniera. Probabilmente questo contesto richiederà il collegamento a servizi esterni.
+        Il contesto PERSONALE riporta informazioni sul singolo utente, come età, sesso, interessi personali ed abitudini, la propria storia personale (recente). Si tratta del parametro più influente, ma anche del più difficile da ottenere. È infatti necessaria una profilazione dell'utente, sia tramite il riconoscimento all'interno del negozio sia attraverso app di terze parti dalle quali ottenere informazioni volontariamente condivise dal cliente, come i social network personali. Come sottolineato in altre sezioni di questo documento, questo contesto causa un enorme numero di problemi legati alla privacy.
+        
+        2.1.a INTERFACCIA DI SISTEMA/UTENTE
+            
+            Il framework è distribuito sottoforma di unità di codice java (.jar) pre compilate. Si presuppone che gli utenti siano programmatori esperti, con buona familiarità del linguaggio utilizzato e dell'architettura a microservizi. 
+            In particolare, il framework una volta implementato comunicherà con il mondo e coi singoli client tramite delle RESTFUL APIs. Sarà sempre possibile accedere alle informazioni (esposte come application/json) delle singole unità tramite internet browsers come Firefox. Non si esclude l'utilizzo di interfacce grafiche di terze parti.
+            
+        2.1.b INTERFACCIA HARDWARE
+            
+            La comunicazione con l'hardware (come sensori ed attuatori) avverrà tramite api rest. Sarà quindi necessaria una connessione tramite protocollo TCP/IP. Per quanto riguarda l'installazione del framework stesso, a prendersi cura dell'interfaccia con l'hardware sarà la macchina virtuale di Java.
+            
+        2.1.c INTERFACCIA SOFTWARE
+        
+            La comunicazione interna ed esterna avviene sempre tramite api rest.
+            
+        2.1.d ITERFACCIA DI COMUNICAZIONE
+        
+            La comunicazione interna ed esterna si svolge seguendo il protocoolo HTTP 1.1, i dati scambiati sono incapsulati lal'interno di oggetti JSON.
+            
+        2.1.e VINCOLI SULL'OCCUPAZIONE DI MEMORIA
+
+            Non vi sono vincoli sull'occupazione della memoria.
+        
+    2.2 VINCOLI DI DESIGN (da fare)
+    
+        2.2.a OPERAZIONI
+        
+        2.2.b REQUISITI DI ADATTAMENTO IN SITO (vincoli di installazione)
+
+            L'installazione è vincolata all'ambiente di sviluppo JAVA, di conseguenza richiede la preinstallazione del Java runtime environment 8 o successivi (o equivalenti). Lo sviluppo è avvenuto in parte utilizzando il java OpenJDK e il relativo JRE.
+    
+    2.3 MACRO FUNZIONALITà DEL SISTEMA
+
+        Tramite Botolo ogni utente avrà a propria disposizione le seguenti funzionalità:
+    
+        2.3.a RECUPERO DEI CONTESTI
+            - RECUPERO DEL CONTESTO ESTERNO: un servizio che fungerà da observer per ottenere informazioni riguardanti il contesto esterno
+            - RECUPERO DEL CONTESTO STATISTICO: un servizio capace di ottenere dati da terze parti dai quali ottenere statistiche utili per il decisore
+            - RECUPERO DEL CONTESTO PERSONALE: Un servizio capace di tenere traccia della profilazione dei clienti attraverso diverse fonti, classificandoli e raggruppandoli secondo   parametri principali come età e sesso.
+
+        2.3.b CREAZIONE GRAFO DELLE COMPOSIZIONI
+            - RAGGRUPPAMENTO E CLASSIFICAZIONE DEI CONTESTI 
+            - ASSEGNAZIONE DI PESI E PUNTEGGI SUI CONTESTI INFLUENZABILI 
+            - CREAZIONE GRAFO DELLE COMPOSIZIONI
+            Questa funzionalità è divisa in tre funzionalità logiche differenti, che di fatto vanno a creare un'unica grande unità fondamentale per un processo didecision making. Dopo aver identificato il profilo del cliente all'interno del punto vendita, si crea una mappa dei pesi riguardante i comfort aspects che possiamo influenzare tramite gli attuatori a nostra disposizione. Un grafo delle composizioni è sempre necessario data l'esistenza di più parametri, senza di esso non si potrebbe prendere una decisione coerente: non avrebbe senso riprodurre musica metal coi led rosa accesi e il diffusore di profumo impostato su fragolina di bosco. Un miglior esempio sarà introdotto nell'appendice, nel quale il software sarà analizzato tramite un case study concordato.
+            Il primo raggruppamento avviene tramite richieste ai servizi di recupero dei contesti. 
+        
+        2.3.c VARIAZIONE DELLO STATO DEL SISTEMA
+            - COSTRUZIONE GRAFO DELLE COMPOSIZIONI OTTIMALE: la funzionalità precedente era fine alla creazione di un grafo delle composizioni, questa invece è fine all'individuazione di quello ottimale. Lo stato del sistema dovrebbe infatti sempre tendere a quest'ultimo. 
+            - SCELTA DEI TARGET DA INFLUENZARE: un algoritmo decisionale sceglie quali sono i target da far variare nel futuro più prossimo per migliorare lo stato del sistema. In generale, si cercherà la leggge di Amdahl, cioè ottenere il massimo beneficio col minimo sforzo.
+            - ATTUAZIONE DEL GRAFICO: tramite dei servizi observable, sarà possibile per gli attuatori visionare i dati appena calcolati ed attuare le modifiche predisposte. 
+        
+        2.3.d OTTENIMENTO STATO DEL SISTEMA: L'ottenimento dello stato comporta un'azione simile al recupero dei contesti, ma la comunicazione deve avvenire con gli attuatori anzichè coi sensori. Non vi sono differenze tra le tipologie di attuatori se non il tipo di dato che vanno a manipolare.
+        
+        2.3.e SALVATAGGIO DELLO STATO DEL SISTEMA:  A noi interessa sapere infatti quale è il valore "attuato" in un certo contesto temporale e spaziale per capire se il sistema stia reagendo adeguatamente ed individuare eventuali malfunzionamenti. 
+        
+        2.3.f SALVATAGGIO DEI CONTESTI: Il salvataggio dei contesti serve per creare uno storico sul quale affinare gli algoritmi e con il quale confrontarelo storico degli stati del sistema per un'analisi postuma. Il programma sta reagendo adeguatamente per davvero? Ho attuato modifiche adeguate? I tempi di reazione del sistema erano celeri o la latenza era troppo alta?
+
+    2.4 CARATTERISTICHE DEGLI UTENTI
+
+        Gli utenti a cui è rivolto Botolo sono sviluppatori software (principalmente in java) sulle cui "spalle" hanno intenzione di creare prodotti finiti e di curarne l'installazione in ambienti reali. Di conseguenza, si assume che essi abiano una discreta conoscenza del mondo della programmazione software e abbiano idea di come implementarlo sul proprio hardware a diposizione. Non è quindi finalizzato al vero e proprio utente finale, ovvero il negoziante.
+
+    2.5 VINCOLI GENERALI
+
+        I principali elementi di criticità del framework in questione sono le seguenti:
+
+           DA FARE
+    
+    2.6 ASSUNZIONI E DIPENDENZE
+
+        Le principali ipotesi su cui si basa il documento riguardano:
+
+            DA FARE
+    
+    2.7 REQUISITI DA ANALIZZARE IN FUTURO
+
+        Il contesto di un cliente è preso in particolare considerazione nel caso degli e-commerce, i quali lo utilizzano per indirizzare l'individuo verso l'acquisto di prodotti che gli potrebbero interessare. Il problema del "comfort" non è preso in particolare attenzione, se non per quanto riguarda la navigabilità del sito anche per gli utenti meno esperti. Il lavoro a noi assegnato invece si concentra sull'ambiente fisico, dove musica, colori e l'apparenza in generale giocano un ruolo imporante sui sentimenti dlle persone. Serve però capire con chi abbiamo a che fare.
+        Un aspetto importante da considerare in futuro sarà la gestione della privacy. Il regolamento in europea, in particolare, è estremamente stringente sull'utilizzo del riconoscimento facciale per esempio, e in futuro potrebbe diventarlo ancora di più. Nonostante ormai l'intelligenza artificiale applicata al riconoscimento del volto sia ovunque, sono ben pochi i campi in cui esso, al di fuori della sperimentazione, sia veramente legale. Un esempio è il SARI utilizzato dalle forze dell'ordine per il riconoscimento dei criminali a partire dalle riprese delle telecamere di sorveglianza le quali sono posto a confronto con le foto segnaletiche di circa 10 milioni di inidvidui, di cui 2 milioni di italiani. Esso è legale principalmente per due ragioni, la principale è che questo lavoro di riconoscimento in passato era già svolto manualmente. La seconda è che l'automazione del confronto rende più efficienti le ricerche dei criminali concedendogli ben poco margine di fuga. In contrasto, un'applicazione a fini commerciali è probabile che possa essere ritenuta illegale. Infatti i dati biometrici sono considerati i più sensibili in assoluto dal regolamento europeo, essendo essi unici e pressochè impossibili da cambiare (se non a seguito di costose e dolorose chirurgie estetiche). In un e-commerce, al contrario, l'utente viene riconosciuto in base ad un ID e una password (nel caso più semplice), ed essi possono essere facilmente cambiati, cancellati o sostituiti permettendoci di creare una nuovaversione di noi stessi completamente (o quasi) sconosciuta la sito web. Sarà quindi forse necessario creare un sistema di riconoscimento alternativo a quello visivo, e magari quest'ultimo utilizzarlo solamente per quanto riguarda l'indovinare parametri come età media e sesso principale della clientela senza però effettuare una vera e propria profilazione dell'utenza.
+
+3. SPECIFICA DEI REQUISITI
+
+    3.1 REQUISITI FUNZIONALI
+    
+        3.1.1 RECUPERO DEI CONTESTI
+        
+        RF01    |   
+        --------+
+        INPUT   |   tipo di contesto, tipo di dato, dato, id sensore
+        --------+
+        PROCESS |   Registra il sensore caso mai fosse la prima volta che si presenta, screma il rumore, ordina i dati,
+                |   assegna un primo peso.
+                |   
+        --------+
+        OUTPUT  |   I dati ordinati e scremati dal rumore. Ottenimento composizione del sistema attuale
+        --------+
+        Non è necessario specificare funzioni per il recupero delle singole tiplogie di contesti, essendo che l'interfaccia di funzionamento dovrebbe essere sempre la medesima.
+        
+        3.1.2 RECUPERO DELLO STATO DEL SISTEMA
+        
+        RF02    |
+        --------+
+        INPUT   |   tipo di dato trattato, dato, id attuatore
+        --------+
+        PROCESS |   Registra l'attuatore caso mai fosse la prima volta che si presenta, screma il rumore,
+                |   ordina i dati.
+        --------+
+        OUTPUT  |   I dati rodinati e scremati dal rumore. Ottenimento stato attuale del sistema.
+        --------+
+        
+        3.1.3 CREAZIONE GRAFO DELLE COMPOSIZIONI
+        
+        RF03    |
+        --------+
+        INPUT   |   Composizione attuale del sistema. Stato atttuale del sistema.
+        --------+
+        PROCESS |   Assegnazione dei pesi ai componenti della composizione. Creazione connessioni accurate
+                |   tra i comfort aspects. Creazione grafo delle composizioni, all'interno del quale
+                |   sono riportare diverse possibili composizioni dei comfort aspects.
+        --------+
+        OUTPUT  |   Grafo delle composizioni possibili
+        --------+
+        
+        3.1.4 VARIAZIONE DELLO STATO DEL SISTEMA
+        
+        RF04    |
+        --------+
+        INPUT   |   Grafo delle composizioni possibili
+        --------+
+        PROCESS |   Identificazione del miglior percorso all'interno del grafo, il quale possiede la 
+                |   maggior probabilità di creare la composizione ottimale per i clienti.
+                |   Identificazione degli attuatori sui quali è possibile intervenire e quali sono 
+                |   gli svantaggi di un possibile errore nella loro variazione rapportati ai vantaggi.
+        --------+
+        OUTPUT  |   (Eventuale) variazione del valore assegnato agli attuatori
+        --------+
+        
+        3.1.5 SALVATAGGIO DELLO STATO DEL SISTEMA
+        
+        RF05    |
+        --------+
+        INPUT   |   Stato del sistema
+        --------+
+        PROCESS |   Accesso ad un database e salvataggio dello stato
+        --------+
+        OUTPUT  |   Storico degli stati del sistema
+        --------+
+        
+        3.1.6   SALVATAGGIO DEL CONTESTO DEL SISTEMA
+        
+        RF06    |
+        --------+
+        INPUT   |   Composizione attuale dei contesti del sistema
+        --------+
+        PROCESS |   Accesso ad un databse e salvataggio della composizione dei contesti
+        --------+
+        OUTPUT  |   Storico dei contesti 
+        --------+
+
+    3.2 REQUISITI NON FUNZIONALI
+    
+    RN01    |   REQUISITI PRESTAZIONALI |   REQUISITI PER LE MIGLIORI PERFORMANCE DEL SISTEMA
+    --------+---------------------------+------------------------------------------------------
+    Descrizione |   Per poter ottenere le migliori performance da parte del sistema, è necessaria
+                |   una connessione internet performante che segua lo standard TCP/IP.
+                |   Nonostante non sia necessario, è comunque consigliato eseguire il database su
+                |   un server capace di un buon throughput, mentre i servizi decisionali su delle
+                |   macchine dedicate con ottime prestazioni in termini di velocità, per minimizzare
+                |   la latenza tra una decisione e l'altra.
+                |   I servizi dediti alla raccolta dei contesti non necessitano di hardware 
+                |   particolarmente potenti, e si suggerisce di connetterli al medesimo database
+                |   dei servizi decisionali. Anche in questo caso, però, si caldeggia l'utilizzo
+                |   di una buona connessione internet, possibilmente del grado del gigabit o più.
+                
+    RN02    |   REQUISITI PRESTAZIONALI |   SISTEMA LOCALE
+    --------+---------------------------+---------------------------------------------------------
+    Descrizione |   Nonostante non sia necessario, il sistema è studiato per essere eseguito in 
+                |   locale e a "zone". Nonostante nelle fasi decisionali sia possibile riordinare 
+                |   ulteriormente i dati, sarebbe meglio che i sensori e gli attuatori associati
+                |   dalla località spaziale siano accorpati sotto il medesimo servizio di 
+                |   raccolta dei contesti/dello stato. Inoltre, il collegamento, per minimizzare
+                |   la latenza, dovrebbe essere via cavo e il quanto più diretto possibile.
+
+    RN03    |   REQUISITI PRESTAZIONALI |   CALCOLATORI MULTICORE
+    --------+---------------------------+----------------------------------------------------------
+    Descrizione |   Nel caso si eseguissero più servizi sul medesimo calcolatore, è suggerito
+                |   adottare macchine costituite di più processori/core o almeno capaci di
+                |   supportare hyperthreading ed equivalenti.
+            
+    RN04    |   REQUISITI PRESTAZIONALI |   CONSUMO ENERGETICO
+    --------+---------------------------+----------------------------------------------------------
+    Descrizione |   Data l'estensione di un sistema come quello preso in considerazione, e data la
+                |   necessità di mantenerlo in funzione quasi 24/7, si suggerisce l'addozione di
+                |   dispositivi a basso consumo energetico e si sconsiglia l'utilizzo di calcolatori
+                |   datati. In caso contrario, il costo energetico potrebbe arrivare a pareggiare
+                |   il guadagno rispetto alle vendite pre-implementazione di Botolo.
+                
+    RN05    |   DATABASE    |   SPECIFICHE DATABASE
+    --------+---------------+-----------------------------------------------------------------------
+    Descrizione |   Non è di particolare importanza il motore utilizzato, l'importante è che sia
+                |   possibile eseguire queary utilizzando lo standard SQL. Preferibilmente, è meglio
+                |   utilizzare un database locale per evitare problemi legati alla privacy. Sarà 
+                |   possibile altresì utilizzare un database centralizzato per tutti i servizi o 
+                |   uno per ciascun servizio, essendo comunque la comunicazione tra i servizi basata
+                |   esclusisivamente su dati in tempo reale.
+                
+    RN06    |   ATTRIBUTI DEL SISTEMA   |   SICUREZZA DATI UTENTI   
+    --------+---------------------------+-----------------------------------------------------------
+    Descrizione |   Data la delicatezza dei dati trattati, si preferisce utilizzare un sistema
+                |   con accesso all'esterno controllato. Perciò le api rest dovranno essere esposte 
+                |   solamente in locale.
+                |   Il database si assume creato localmente.
+                
+    RN07    |   ATTRIBUTI DEL SISTEMA   |   PORTABILITÀ
+    --------+---------------------------+-------------------------------------------------------------
+    Descrizione |   Il framework, lavorando sulla JVM, è indipendente dal sistema operativo e dall'hardware.
+                |   Il lavoro dell'utente, però, potrebbe non essere altrettanto portabile.
+    
+    RN08   |   ATTRIBUTI DEL SISTEMA   |   MODULARITÀ
+    --------+---------------------------+-------------------------------------------------------------
+    Descrizione | Utilizzando un'architettura a microservizi, si garantisce un'estrema modularità da 
+                | parte del software. 
