@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-09-08T16:59:11.477Z" agent="5.0 (X11)" etag="-DIgqehoG-KmBBjCCSBE" version="13.6.6" type="github" pages="4">
+<mxfile host="app.diagrams.net" modified="2020-09-08T17:05:17.910Z" agent="5.0 (X11)" etag="-5NesXbaxl1Q1JPEEWJD" version="13.6.9" type="github" pages="4">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="1185" dy="-498" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1422" dy="-364" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -236,52 +236,52 @@
         <mxCell id="c-raRDEKKhjxn3rfrex0-0" value="Static" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=left;spacingTop=-6;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="1390" y="1890" width="100" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="OzjkkR5l2p39zToK4pCS-0" value="&lt;div&gt;CLASS DIAGRAMA completo&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="980" y="2035" width="180" height="30" as="geometry" />
+        <mxCell id="OzjkkR5l2p39zToK4pCS-0" value="&lt;div&gt;CLASS DIAGRAM completo&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="985" y="2035" width="170" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="FWjQx-l_E2E1eGjO0J7R-0" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="FWjQx-l_E2E1eGjO0J7R-0" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="150" y="1470" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="FWjQx-l_E2E1eGjO0J7R-1" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="FWjQx-l_E2E1eGjO0J7R-1" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="180" y="1730" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="FWjQx-l_E2E1eGjO0J7R-2" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="FWjQx-l_E2E1eGjO0J7R-2" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="40" y="1460" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="FWjQx-l_E2E1eGjO0J7R-3" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="FWjQx-l_E2E1eGjO0J7R-3" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="40" y="1970" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="FWjQx-l_E2E1eGjO0J7R-4" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="FWjQx-l_E2E1eGjO0J7R-4" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="410" y="1650" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="FWjQx-l_E2E1eGjO0J7R-5" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="FWjQx-l_E2E1eGjO0J7R-5" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="410" y="1970" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="FWjQx-l_E2E1eGjO0J7R-6" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="FWjQx-l_E2E1eGjO0J7R-6" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="490" y="1630" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="FWjQx-l_E2E1eGjO0J7R-7" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="FWjQx-l_E2E1eGjO0J7R-7" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="560" y="1730" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="FWjQx-l_E2E1eGjO0J7R-8" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="FWjQx-l_E2E1eGjO0J7R-8" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="280" y="1390" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="FWjQx-l_E2E1eGjO0J7R-9" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="FWjQx-l_E2E1eGjO0J7R-9" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="740" y="1500" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="FWjQx-l_E2E1eGjO0J7R-10" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="FWjQx-l_E2E1eGjO0J7R-10" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="490" y="1490" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="FWjQx-l_E2E1eGjO0J7R-11" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="FWjQx-l_E2E1eGjO0J7R-11" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="660" y="1590" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="FWjQx-l_E2E1eGjO0J7R-12" value="Si può notare l&#39;utilizzo del design pattern &quot;observer&quot; per quanto riguarda il rapporto tra i sensori/attuatori e il reuperatori di stati/contesti e nel&amp;nbsp; rapporto tra i recuperatori e i controller " style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="FWjQx-l_E2E1eGjO0J7R-12" value="Si può notare l&#39;utilizzo del design pattern &quot;observer&quot; per quanto riguarda il rapporto tra i sensori/attuatori e il reuperatori di stati/contesti e nel&amp;nbsp; rapporto tra i recuperatori e i controller " style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="10" y="1180" width="1020" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="FWjQx-l_E2E1eGjO0J7R-13" value="&lt;div&gt;Inoltre, è presente l&#39;utilizzo del FACADE pattern per quanto riguarda il Controller e il template pattern all&#39;interno del decisore. &lt;br&gt;&lt;/div&gt;&lt;div&gt;Quest&#39;ultimo, infatti, necessiterà di essere implemebntato dall&#39;utente, ma sarà costretto ad eseguire due operazioni fondomantali che portino alla creazione&lt;br&gt;di un grafo rapportante dei pesi/misure, in maniera tale che il controller possa individuare il percorso ideale utilizzando la relativa classe.&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="FWjQx-l_E2E1eGjO0J7R-13" value="&lt;div&gt;Inoltre, è presente l&#39;utilizzo del FACADE pattern per quanto riguarda il Controller e il template pattern all&#39;interno del decisore. &lt;br&gt;&lt;/div&gt;&lt;div&gt;Quest&#39;ultimo, infatti, necessiterà di essere implemebntato dall&#39;utente, ma sarà costretto ad eseguire due operazioni fondomantali che portino alla creazione&lt;br&gt;di un grafo rapportante dei pesi/misure, in maniera tale che il controller possa individuare il percorso ideale utilizzando la relativa classe.&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="10" y="1210" width="880" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="FWjQx-l_E2E1eGjO0J7R-14" value="Negli UML successivi non sarà ovviamente riportato alcun funzionamento dei pattern essendo questi ultimi standardizzati." style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="FWjQx-l_E2E1eGjO0J7R-14" value="Negli UML successivi non sarà ovviamente riportato alcun funzionamento dei pattern essendo questi ultimi standardizzati." style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="10" y="1270" width="690" height="20" as="geometry" />
         </mxCell>
       </root>
